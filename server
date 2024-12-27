@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Магазин одежды</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        /* Шапка сайта */
+        header {
+            background-color: #34495e;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        nav {
+            margin-top: 15px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #e74c3c;
+        }
+
+        /* Поиск */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .search-container input[type="text"] {
+            width: 350px;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .search-container button {
+            padding: 12px 25px;
+            font-size: 16px;
+            background-color: #e74c3c;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .search-container button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Слайдер для акций */
+        .slider {
+            width: 100%;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slider-item {
+            min-width: 100%;
+            background-color: #e74c3c;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .slider-item h2 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .slider-item p {
+            font-size: 18px;
+        }
+        .slider-controls {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .slider-button {
+            background-color: #fff;
+            color: #e74c3c;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            margin: 0 10px;
+            transition: background-color 0.3s;
+        }
+        .slider-button:hover {
+            background-color: #f8f8f8;
+        }
+
+        /* Секция с товарами */
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 40px auto;
+            width: 90%;
+        }
+        .product {
+            background-color: #fff;
+            padding: 20px;
+            width: 22%;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .product h3 {
+            font-size: 20px;
+            color: #34495e;
+            margin-bottom: 10px;
+        }
+        .product p {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+        .product .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        .product button {
+            padding: 10px 15px;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .product button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Подвал */
+        footer {
+            background-color: #34495e;
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+            font-size: 16px;
+            margin-top: 40px;
+        }
+
+        /* Мобильная версия */
+        @media (max-width: 768px) {
+            .product {
+                width: 48%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product {
+                width: 100%;
+            }
+            .search-container input[type="text"] {
+                width: 80%;
+            }
+            .slider-item h2 {
+                font-size: 28px;
+            }
+            .slider-item p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header>
+        <h1>Магазин одежды</h1>
+        <nav>
+            <a href="#">Главная</a>
+            <a href="#">О нас</a>
+            <a href="#">Контакты</a>
+            <a href="#">Магазин</a>
+        </nav>
+    </header>
+
+    <!-- Поиск -->
+    <div class="search-container">
+        <input type="text" placeholder="Поиск товаров...">
+        <button>Найти</button>
+    </div>
+
+    <!-- Слайдер акций -->
+    <div class="slider">
+        <div class="slider-wrapper">
+            <div class="slider-item">
+                <h2>Скидка до 50%</h2>
+                <p>Только до конца месяца! Успей купить!</p>
+            </div>
+            <div class="slider-item">
+                <h2>Новая коллекция</h2>
+                <p>Откройте для себя свежие стили!</p>
+            </div>
+            <div class="slider-item">
+                <h2>Бесплатная доставка</h2>
+                <p>На все заказы от 3000 рублей!</p>
+            </div>
+        </div>
+        <div class="slider-controls">
+            <button class="slider-button" onclick="prevSlide()">&#10094; Предыдущий</button>
+            <button class="slider-button" onclick="nextSlide()">Следующий &#10095;</button>
+        </div>
+    </div>
+
+    <!-- Секция с товарами -->
+    <div class="product-grid">
+        <div class="product">
+            <img src="https://via.placeholder.com/300" alt="Платье">
+            <h3>Платье летнее</h3>
+            <p>Красивое летнее платье, идеально подходящее для отдыха.</p>
+            <p class="price">3000 руб.</p>
+            <button>Добавить в корзину</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300" alt="Куртка">
+            <h3>Куртка зимняя</h3>
+            <p>Теплая куртка для холодных зимних дней.</p>
+            <p class="price">5000 руб.</p>
+            <button>Добавить в корзину</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300" alt="Штаны">
+            <h3>Штаны джинсовые</h3>
+            <p>Комфортные джинсы для повседневного ношения.</p>
+            <p class="price">2000 руб.</p>
+            <button>Добавить в корзину</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300" alt="Топ">
+            <h3>Топ летний</h3>
+            <p>Легкий топ для жаркой погоды.</p>
+            <p class="price">1500 руб.</p>
+            <button>Добавить в корзину</button>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <footer>
+        <p>&copy; 2024 Магазин одежды. Все права защищены.</p>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slider-item');
+        const totalSlides = slides.length;
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function updateSlider() {
+            const newTransform = -currentSlide * 100;
+            document.querySelector('.slider-wrapper').style.transform = `translateX(${newTransform}%)`;
+        }
+    </script>
+
+</body>
+</html>
